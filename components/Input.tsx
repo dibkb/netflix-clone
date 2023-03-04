@@ -21,7 +21,7 @@ const Input: React.FC<InputProps> = ({
         className="bg-zinc-700 w-full rounded-md text-base outline-none
               px-6
               pt-6
-              pb-1
+              pb-2
         appearance-none
         focus:outline-none
         focus:ring-0
