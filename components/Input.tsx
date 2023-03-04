@@ -18,7 +18,7 @@ const Input: React.FC<InputProps> = ({
       <input
         id={id}
         type={type}
-        className="bg-zinc-700 w-full rounded-md text-base outline-none
+        className="bg-zinc-800 w-full rounded-md text-base outline-none
               px-6
               pt-6
               pb-2
