@@ -20,7 +20,7 @@ const Auth: React.FunctionComponent = () => {
         <section className="flex justify-center">
           <div
             className=" bg-black bg-opacity-80 rounded-lg
-          lg:w-3/5 lg:max-w-lg md:max-w-xl sm:max-w-xl w-full px-12 py-16 select-none flex flex-col gap-6"
+          lg:w-4/5 lg:max-w-xl md:max-w-xl sm:max-w-xl w-full px-16 py-16 select-none flex flex-col gap-6"
           >
             <h3 className="font-bold text-4xl mb-4">
               {variant === "register" ? "Register" : "Sign In"}
