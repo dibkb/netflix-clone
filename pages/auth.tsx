@@ -66,12 +66,14 @@ const Auth: React.FunctionComponent = () => {
               </p>
             </button>
             <span className="flex items-center gap-2 text-sm">
-              <p className=" text-zinc-500">New to Netflix?</p>
+              <p className=" text-zinc-500">
+                {variant === "login" ? "New to Netflix?" : "Already a member?"}
+              </p>
               <p
                 className="cursor-pointer hover:underline"
                 onClick={switchVariant}
               >
-                Register here
+                {variant === "login" ? "Register here" : "Login here"}
               </p>
             </span>
           </div>
