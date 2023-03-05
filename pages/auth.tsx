@@ -1,5 +1,6 @@
 import Input from "@/components/Input";
 import React, { useCallback, useState } from "react";
+import { signIn } from "next-auth/react";
 import axios from "axios";
 import logo from "../public/images/logo.png";
 import { FcGoogle } from "react-icons/fc";
@@ -23,6 +24,18 @@ const Auth: React.FunctionComponent = () => {
       console.error(error);
     }
   }, [username, email, password]);
+  const login = useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [email, password]);
   return (
     <div className="relative w-full h-full bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/a43711df-c428-4f88-8bb3-b2ac5f20608f/32935458-d049-44c2-b94b-32f16d60ded1/IN-en-20230227-popsignuptwoweeks-perspective_alpha_website_large.jpg')] bg-no-repeat bg-cover bg-center">
       <div className=" bg-black w-full h-full lg:bg-opacity-60">
@@ -61,7 +74,7 @@ const Auth: React.FunctionComponent = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <button
-              onClick={variant === "register" ? register : (e) => e}
+              onClick={variant === "register" ? register : login}
               className="bg-red-700 rounded-md py-3 hover:bg-red-800 mt-3 text-base mb-6"
             >
               {variant === "register" ? "Sign Up" : "Login"}
