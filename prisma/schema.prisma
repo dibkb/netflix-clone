@@ -2,6 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
 }
 
 datasource db {
@@ -11,7 +12,7 @@ datasource db {
 // ------------------- User-------------------------
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
+  username String
   image String?
   email String? @unique
   emailVerified DateTime?
