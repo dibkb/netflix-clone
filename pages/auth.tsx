@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 const Auth: React.FunctionComponent = () => {
   const [email, setEmail] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [variant, setVariant] = useState<"register" | "login">("register");
   const switchVariant = useCallback(() => {
@@ -16,14 +16,14 @@ const Auth: React.FunctionComponent = () => {
   const register = useCallback(async () => {
     try {
       await axios.post("/api/register", {
-        username,
+        name,
         email,
         password,
       });
     } catch (error) {
       console.error(error);
     }
-  }, [username, email, password]);
+  }, [name, email, password]);
   const login = useCallback(async () => {
     try {
       await signIn("credentials", {
@@ -52,11 +52,11 @@ const Auth: React.FunctionComponent = () => {
             </h3>
             {variant === "register" && (
               <Input
-                id="username"
+                id="name"
                 type="text"
-                value={username}
-                placeholder="Username"
-                onChange={(e) => setUsername(e.target.value)}
+                value={name}
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
               />
             )}
             <Input
@@ -86,7 +86,10 @@ const Auth: React.FunctionComponent = () => {
                 {variant === "register" ? "Register" : "Sign in"} with Google
               </p>
             </button>
-            <button className="text-sm py-3 bg-white rounded-md flex justify-center gap-3 items-center hover:bg-slate-100">
+            <button
+              onClick={() => signIn("github", { callbackUrl: "/" })}
+              className="text-sm py-3 bg-white rounded-md flex justify-center gap-3 items-center hover:bg-slate-100"
+            >
               <FaGithub className="text-zinc-900" size="1.5rem" />
               <p className="text-zinc-900">
                 {variant === "register" ? "Register" : "Sign in"} with Gitbub
