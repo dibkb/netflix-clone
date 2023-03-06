@@ -6,6 +6,7 @@ import logo from "../public/images/logo.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { NextPageContext } from "next";
+import { useRouter } from "next/router";
 // --------------------- ServerSide--------------------
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -22,6 +23,7 @@ export async function getServerSideProps(context: NextPageContext) {
   };
 }
 const Auth: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -35,12 +37,13 @@ const Auth: React.FC = () => {
         email,
         password,
         redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/home",
       });
+      router.push("/profiles");
     } catch (error) {
       console.error(error);
     }
-  }, [email, password]);
+  }, [email, password, router]);
   const register = useCallback(async () => {
     try {
       await axios.post("/api/register", {
