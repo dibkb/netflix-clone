@@ -8,8 +8,8 @@ export default async function handler(
     res.status(405).end();
   }
   try {
-    const { curretUser } = await serverAuth(req);
-    res.status(200).json(curretUser);
+    const { currentUser } = await serverAuth(req);
+    res.status(200).json(currentUser);
   } catch (e) {
     res.status(400).json((e as Error).message);
   }
