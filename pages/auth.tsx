@@ -37,9 +37,9 @@ const Auth: React.FC = () => {
         email,
         password,
         redirect: false,
-        callbackUrl: "/home",
+        callbackUrl: "/profile",
       });
-      router.push("/profiles");
+      router.push("/profile");
     } catch (error) {
       console.error(error);
     }
@@ -101,7 +101,7 @@ const Auth: React.FC = () => {
             </button>
             {/* Oauth buttons */}
             <button
-              onClick={() => signIn("google", { callbackUrl: "/home" })}
+              onClick={() => signIn("google", { callbackUrl: "/profile" })}
               className="text-sm py-3 bg-white rounded-md flex justify-center gap-3 items-center hover:bg-slate-100"
             >
               <FcGoogle className="" size="1.5rem" />
@@ -110,7 +110,7 @@ const Auth: React.FC = () => {
               </p>
             </button>
             <button
-              onClick={() => signIn("github", { callbackUrl: "/home" })}
+              onClick={() => signIn("github", { callbackUrl: "/profile" })}
               className="text-sm py-3 bg-white rounded-md flex justify-center gap-3 items-center hover:bg-slate-100"
             >
               <FaGithub className="text-zinc-900" size="1.5rem" />

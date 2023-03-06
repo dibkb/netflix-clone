@@ -4,11 +4,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST") {
+  if (req.method !== "GET") {
     res.status(405).end();
   }
   try {
     const { currentUser } = await serverAuth(req);
+    console.log(currentUser);
     res.status(200).json(currentUser);
   } catch (e) {
     res.status(400).json((e as Error).message);
