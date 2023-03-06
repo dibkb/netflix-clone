@@ -30,13 +30,18 @@ const App: React.FC = () => {
       <div className="flex justify-between mt-12 mx-auto w-fit flex-wrap gap-y-8">
         {users.map((account, i) => {
           return (
-            <span key={i} className="basis-1/2 md:basis-1/4 px-6">
+            <span
+              key={i}
+              className="group basis-1/2 md:basis-1/4 px-6 hover:cursor-pointer"
+            >
               <img
                 src={account.thubmnail}
                 alt=""
-                className="h-32 mb-2 mx-auto"
+                className="h-32 mb-2 mx-auto border border-transparent group-hover:border-white"
               />
-              <p className="text-center">{account.name || user?.name}</p>
+              <p className="text-zinc-500 text-center group-hover:text-white">
+                {account.name || user?.name}
+              </p>
             </span>
           );
         })}
