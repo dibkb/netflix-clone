@@ -27,11 +27,15 @@ const App: React.FC = () => {
       <h1 className="text-4xl md:text-6xl text-center mt-12">
         Who&apos;s watching?
       </h1>
-      <div className="flex gap-12 mt-12 mx-auto w-fit flex-wrap">
+      <div className="flex justify-between mt-12 mx-auto w-fit flex-wrap gap-y-8">
         {users.map((account, i) => {
           return (
-            <span key={i}>
-              <img src={account.thubmnail} alt="" className="h-32 mb-2" />
+            <span key={i} className="basis-1/2 md:basis-1/4 px-6">
+              <img
+                src={account.thubmnail}
+                alt=""
+                className="h-32 mb-2 mx-auto"
+              />
               <p className="text-center">{account.name || user?.name}</p>
             </span>
           );
