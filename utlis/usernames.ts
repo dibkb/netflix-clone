@@ -1,20 +1,20 @@
 export const users = [
   {
-    thubmnail:
+    thumbnail:
       "https://raw.githubusercontent.com/AntonioErdeljac/next-netflix-tutorial/master/public/images/default-blue.png",
     name: "Bruce Wayne",
   },
   {
-    thubmnail:
+    thumbnail:
       "https://raw.githubusercontent.com/AntonioErdeljac/next-netflix-tutorial/master/public/images/default-green.png",
   },
   {
-    thubmnail:
+    thumbnail:
       "https://raw.githubusercontent.com/AntonioErdeljac/next-netflix-tutorial/master/public/images/default-red.png",
     name: "Clark Kent",
   },
   {
-    thubmnail:
+    thumbnail:
       "https://raw.githubusercontent.com/AntonioErdeljac/next-netflix-tutorial/master/public/images/default-slate.png",
     name: "Princess Dianna",
   },
