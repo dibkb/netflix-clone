@@ -1,11 +1,27 @@
 import Input from "@/components/Input";
 import React, { useCallback, useState } from "react";
-import { signIn } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import axios from "axios";
 import logo from "../public/images/logo.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-const Auth: React.FunctionComponent = () => {
+import { NextPageContext } from "next";
+// --------------------- ServerSide--------------------
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
+const Auth: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -13,17 +29,6 @@ const Auth: React.FunctionComponent = () => {
   const switchVariant = useCallback(() => {
     setVariant((prev) => (prev === "register" ? "login" : "register"));
   }, []);
-  const register = useCallback(async () => {
-    try {
-      await axios.post("/api/register", {
-        name,
-        email,
-        password,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }, [name, email, password]);
   const login = useCallback(async () => {
     try {
       await signIn("credentials", {
@@ -36,6 +41,18 @@ const Auth: React.FunctionComponent = () => {
       console.error(error);
     }
   }, [email, password]);
+  const register = useCallback(async () => {
+    try {
+      await axios.post("/api/register", {
+        name,
+        email,
+        password,
+      });
+      login();
+    } catch (error) {
+      console.error(error);
+    }
+  }, [name, email, password, login]);
   return (
     <div className="relative w-full h-full bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/a43711df-c428-4f88-8bb3-b2ac5f20608f/32935458-d049-44c2-b94b-32f16d60ded1/IN-en-20230227-popsignuptwoweeks-perspective_alpha_website_large.jpg')] bg-no-repeat bg-cover bg-center">
       <div className=" bg-black w-full h-full lg:bg-opacity-60">
@@ -80,14 +97,17 @@ const Auth: React.FunctionComponent = () => {
               {variant === "register" ? "Sign Up" : "Login"}
             </button>
             {/* Oauth buttons */}
-            <button className="text-sm py-3 bg-white rounded-md flex justify-center gap-3 items-center hover:bg-slate-100">
+            <button
+              onClick={() => signIn("google", { callbackUrl: "/home" })}
+              className="text-sm py-3 bg-white rounded-md flex justify-center gap-3 items-center hover:bg-slate-100"
+            >
               <FcGoogle className="" size="1.5rem" />
               <p className="text-zinc-900">
                 {variant === "register" ? "Register" : "Sign in"} with Google
               </p>
             </button>
             <button
-              onClick={() => signIn("github", { callbackUrl: "/" })}
+              onClick={() => signIn("github", { callbackUrl: "/home" })}
               className="text-sm py-3 bg-white rounded-md flex justify-center gap-3 items-center hover:bg-slate-100"
             >
               <FaGithub className="text-zinc-900" size="1.5rem" />
