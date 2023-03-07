@@ -9,14 +9,10 @@ import Mobilemenu from "./Mobilemenu";
 
 const Navbar: React.FC = () => {
   let profileImage;
-  useEffect(() => {
-    profileImage = localStorage.getItem("netflix-clone-picture");
-    console.log(profileImage);
-  }, []);
   const [showAccountMenu, setShowAccountMenu] = React.useState<boolean>(false);
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
   return (
-    <nav className="w-full fixed select-none">
+    <nav className="z-10 w-full fixed select-none">
       <div className="px-4 md:px-16 py-8 gap-7 flex items-center justify-items-stretch">
         <img src={logo.src} alt="" className="h-4 md:h-7" />
         <div className="hidden lg:flex gap-8">

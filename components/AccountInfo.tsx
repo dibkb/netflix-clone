@@ -6,10 +6,6 @@ interface AccountInfo {
 const AccountInfo: React.FC<AccountInfo> = ({ showMenu }) => {
   let profileImage;
   let profileName;
-  useEffect(() => {
-    profileImage = localStorage.getItem("netflix-clone-picture");
-    profileName = localStorage.getItem("netflix-clone-username");
-  }, []);
   if (!showMenu) return null;
   return (
     <div className="absolute rounded-md border-2 border-gray-800 top-12 bg-zinc-900 right-0 w-56">
