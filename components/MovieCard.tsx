@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { GoPlay } from "react-icons/go";
 import { BookmarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { PlayCircleIcon } from "@heroicons/react/24/solid";
 import logo from "../public/images/logo_2.png";
 import FavouriteButon from "./FavouriteButon";
+import { useRouter } from "next/router";
+import useInfoModalStore from "@/hooks/useInfoModalStore";
 export interface MovieCardinterface {
   id: string;
   thumbnailUrl: string;
@@ -16,9 +18,16 @@ const MovieCard: React.FC<MovieCardinterface> = ({
   title,
   duration,
 }) => {
+  const router = useRouter();
+  const { openModal } = useInfoModalStore();
+  const redirectToWatch = useCallback(
+    () => router.push(`/watch/${id}`),
+    [router, id]
+  );
   return (
     <main key={id} className="group bg-zinc-900 col-span relative h-[12vw]">
       <img
+        onClick={redirectToWatch}
         src={thumbnailUrl}
         alt={title}
         className="
@@ -60,6 +69,7 @@ const MovieCard: React.FC<MovieCardinterface> = ({
       "
       >
         <img
+          onClick={redirectToWatch}
           src={thumbnailUrl}
           alt={title}
           className="
@@ -75,10 +85,16 @@ const MovieCard: React.FC<MovieCardinterface> = ({
         <div className="z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full shadow-md rounded-b-md flex flex-col gap-y-2">
           <div className="flex items-center w-full">
             <span className="flex gap-3 items-center">
-              <PlayCircleIcon className="h-6 w-6 md:h-10 md:w-10 cursor-pointer hover:text-gray-200" />
+              <PlayCircleIcon
+                onClick={redirectToWatch}
+                className="h-6 w-6 md:h-10 md:w-10 cursor-pointer hover:text-gray-200"
+              />
               <FavouriteButon movieId={id} />
             </span>
-            <ChevronDownIcon className="h-6 w-6 md:h-8 md:w-8 ml-auto cursor-pointer hover:text-gray-200" />
+            <ChevronDownIcon
+              onClick={() => openModal(id)}
+              className="h-6 w-6 md:h-8 md:w-8 ml-auto cursor-pointer hover:text-gray-200"
+            />
           </div>
           <p className="text-xl">{title}</p>
           <span className="flex gap-2">
