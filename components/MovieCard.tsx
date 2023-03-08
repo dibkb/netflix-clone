@@ -3,13 +3,13 @@ import { GoPlay } from "react-icons/go";
 import { BookmarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { PlayCircleIcon } from "@heroicons/react/24/solid";
 import logo from "../public/images/logo_2.png";
-interface MovieCard {
+export interface MovieCardinterface {
   id: string;
   thumbnailUrl: string;
   title: string;
   duration: string;
 }
-const MovieCard: React.FC<MovieCard> = ({
+const MovieCard: React.FC<MovieCardinterface> = ({
   id,
   thumbnailUrl,
   title,
