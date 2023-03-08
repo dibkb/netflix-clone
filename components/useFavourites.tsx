@@ -14,6 +14,7 @@ const useFavourites = () => {
     data,
     error,
     isLoading,
+    mutate,
   };
 };
 export default useFavourites;

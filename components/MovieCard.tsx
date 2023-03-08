@@ -3,6 +3,7 @@ import { GoPlay } from "react-icons/go";
 import { BookmarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { PlayCircleIcon } from "@heroicons/react/24/solid";
 import logo from "../public/images/logo_2.png";
+import FavouriteButon from "./FavouriteButon";
 export interface MovieCardinterface {
   id: string;
   thumbnailUrl: string;
@@ -75,7 +76,7 @@ const MovieCard: React.FC<MovieCardinterface> = ({
           <div className="flex items-center w-full">
             <span className="flex gap-3 items-center">
               <PlayCircleIcon className="h-6 w-6 md:h-10 md:w-10 cursor-pointer hover:text-gray-200" />
-              <BookmarkIcon className="h-6 w-6 md:h-8 md:w-8 cursor-pointer hover:text-gray-200" />
+              <FavouriteButon movieId={id} />
             </span>
             <ChevronDownIcon className="h-6 w-6 md:h-8 md:w-8 ml-auto cursor-pointer hover:text-gray-200" />
           </div>

@@ -9,6 +9,7 @@ export default async function handler(
   try {
     const { movieId } = req.body;
     if (!movieId) {
+      console.log(movieId);
       res.status(404).json("No Movie ID provided");
     }
     const existingMovie = await prismadb.movie.findUnique({
@@ -19,7 +20,7 @@ export default async function handler(
     if (!existingMovie) {
       res.status(404).json("Invalid ID");
     }
-    //   --------------- POST------------------------
+    // //   --------------- POST------------------------
     if (req.method === "POST") {
       const { currentUser } = await serverAuth(req);
       const user = await prismadb.user.update({
