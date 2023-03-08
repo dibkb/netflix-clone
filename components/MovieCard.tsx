@@ -2,6 +2,7 @@ import React from "react";
 import { GoPlay } from "react-icons/go";
 import { BookmarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { PlayCircleIcon } from "@heroicons/react/24/solid";
+import logo from "../public/images/logo_2.png";
 interface MovieCard {
   id: string;
   thumbnailUrl: string;
@@ -31,6 +32,14 @@ const MovieCard: React.FC<MovieCard> = ({
             delay-100
             w-full
             h-[12vw]"
+      />
+      <img
+        src={logo.src}
+        alt=""
+        delay-100
+        object-cover
+        className="transition
+        duration absolute group-hover:opacity-0 h-12 object-cover top-3 left-2"
       />
       <div
         className="opacity-0
