@@ -39,7 +39,7 @@ const MovieCard: React.FC<MovieCard> = ({
         delay-100
         object-cover
         className="transition
-        duration absolute group-hover:opacity-0 h-12 object-cover top-3 left-2"
+        duration absolute group-hover:opacity-0 h-6 lg:h-8 xl:h-12 object-cover top-3 left-2"
       />
       <div
         className="opacity-0
